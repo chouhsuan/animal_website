@@ -50,7 +50,8 @@ button {
   opacity: 1;
   transform: translateY(-6em);
   padding-top: 12em;
-  margin-top: 20vh;
+  /*把整個框框撐下去*/
+  /*margin-top: 10vh;*/
 }
 .profile--open .profile__fields {
   opacity: 1;
@@ -68,7 +69,8 @@ button {
   height: 0;
   padding: 3em;
   border-radius: .25em;
-  -webkit-filter: drop-shadow(0 0 2em rgba(0,0,0,0.2));
+  /*底部有背景*/
+  /*-webkit-filter: drop-shadow(0 0 2em rgba(0,0,0,0.2));*/
   transition: 
     opacity .4s ease-in-out,
     height .4s ease-in-out,
