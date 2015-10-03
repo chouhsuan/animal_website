@@ -54,16 +54,17 @@ header a:hover{
 
 .feedbackbox{
 	background-color: black;
-	width: 100px;
+	width: 10em;
+	height: 4em;
 	float: right;
 	margin-top: 3vh;
+	text-decoration: none;
 }
 
-
-.feedbackbn {
+.feedbackbox a{
 	color: white;
-	margin: 0px auto;
-	text-align:center;
+	text-decoration: none;
+	font-size: 1.4em;
 }
 
 
@@ -78,9 +79,25 @@ header a:hover{
 	right: 0;
 }
 
+#animal_pic_top{
+	position: absolute;
+	top: 0;
+	right: 0;
+
+}
 
 
 
+#Footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+#Footer p{
+  text-align: center;
+  line-height: 30px;
+}
 
 
 

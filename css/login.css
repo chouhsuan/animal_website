@@ -176,3 +176,19 @@ input:valid + .label {
     top: 50%;
   }
 }
+
+
+
+#Footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+#Footer p{
+  text-align: center;
+  line-height: 10px;
+}
+
+
+
