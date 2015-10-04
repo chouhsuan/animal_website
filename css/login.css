@@ -15,7 +15,6 @@ body {
   margin: 0;
   font-family: 'Work Sans', Arial, Helvetica, sans-serif;
   min-height: 100%;
-  /*background: linear-gradient(to bottom, #68EACC 0%, #497BE8 100%);*/
   background-color: white;
   color: #777;
 }
@@ -54,6 +53,8 @@ button {
   opacity: 1;
   transform: translateY(-6em);
   padding-top: 12em;
+  /*讓他可以點得到表格*/
+  background-color: transparent;
   /*把整個框框撐下去*/
   /*margin-top: 10vh;*/
 }
@@ -93,10 +94,13 @@ button {
   transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+#toggleProfile{
+}
+
 /*logo掉下來*/
 .profile__avatar {
   position: absolute;
-  z-index: 1; /*layer*/
+  z-index: -1; /*layer*/
   left: 50%;
   transform: translateX(-50%);
   /*border-radius: 1.25em;*/
