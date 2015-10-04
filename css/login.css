@@ -95,12 +95,15 @@ button {
 }
 
 #toggleProfile{
+  /*新亂加，把logo區域壓小一點*/
+  padding-top: 300px;
+  height: 400px;
 }
 
 /*logo掉下來*/
 .profile__avatar {
   position: absolute;
-  z-index: -1; /*layer*/
+  z-index: 1; /*layer*/
   left: 50%;
   transform: translateX(-50%);
   /*border-radius: 1.25em;*/
@@ -128,7 +131,7 @@ button {
 /* Form */
 .field {
   position: relative;
-  margin-bottom: 2em;
+  margin-bottom: 2em; /*每個表格間距*/
 }
 .label {
   position: absolute;
