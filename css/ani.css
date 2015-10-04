@@ -19,7 +19,7 @@ header{
 	height: 7vh;
 	text-align: center;
 	-webkit-transform: translateZ(0);
-
+	overflow: hidden;
 	}
 	
 header a{
@@ -27,8 +27,10 @@ header a{
 	font-size: 14px;
 	text-decoration: none;
 	color: black;
+	display: block;
 	float: right;
 	padding-right: 5vh; 
+	width: 30px;
 }
 
 header a:hover{

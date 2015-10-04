@@ -1,4 +1,5 @@
 /* Base styles */
+
 *, *:after, *:before {
   box-sizing: border-box;
 }
@@ -18,10 +19,12 @@ body {
   background-color: white;
   color: #777;
 }
+
 img {
   vertical-align: middle;
   max-width: 100%;
 }
+
 button {
   cursor: pointer;
   border: 0;
@@ -58,10 +61,15 @@ button {
   opacity: 1;
   visibility: visible;
 }
+/*點下去的動畫*/
 .profile--open .profile__avatar {
-  transform: translate(-50%, -1.5em);
-  border-radius: 50%;
+                      /* 上下, 左右 */
+  /*transform: translate(-50%, -1.5em); */
+  /*縮小後會跑到旁邊*/
+  /*transform: scale(0.5);*/
+  /*border-radius: 50%;*/
 }
+
 .profile__form {
   position: relative;
   background: white;
@@ -78,27 +86,32 @@ button {
     transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     padding .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .profile__fields {
   opacity: 0;
   visibility: hidden;
   transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/*logo掉下來*/
 .profile__avatar {
   position: absolute;
-  z-index: 1;
+  z-index: 1; /*layer*/
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 1.25em;
-  /*overflow: hidden;
-  width: 4.5em;
-  height: 4.5em;*/
-  width: 100%;
-  height: 100%;
+  /*border-radius: 1.25em;*/
+  overflow: hidden;
+  /*width: 4.5em;
+  height: 4.5em;*/ 
+  width: 100vw;
+  height: 100vh;
+  /*top: -500px;*/
+  top: -50vh;
   display: block;
-  transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /*transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);*/
   will-change: transform;
 }
+
 
 .profile__avatar:focus {
   outline: 0;
