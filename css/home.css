@@ -1,5 +1,5 @@
 /* Base styles */
-
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100);
 
 
 html {
@@ -11,7 +11,8 @@ html {
 body {
   position: relative;
   margin: 0;
-  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+  /*font-family: 'Work Sans', Arial, Helvetica, sans-serif;*/
+  font-family: 'Josefin Sans', sans-serif;
   min-height: 100%;
   background-color: #F1F1F1;
 }
@@ -19,8 +20,6 @@ body {
 #toggleProfile{
   margin: 0px auto;
 }
-
-
 
 #Footer{
   position: absolute;
@@ -31,7 +30,35 @@ body {
 #Footer p{
   text-align: center;
   line-height: 10px;
+  color: black;
+}
+
+/*--------------------------------------------*/
+/*http://themes-pixeden.com/playground/text/tenue/*/
+
+
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100);
+body {
+  background-color: #D5D5D5;
+}
+
+.tenue-shadow {
+  color: #fff;
+  text-shadow: 0em 0.003em 0.1px rgba(12, 12, 12, 0.07), 0em 0.006em 0.3px rgba(25, 25, 25, 0.07), 0em 0.009em 0.5px rgba(38, 38, 38, 0.07), 0em 0.012em 0.7px rgba(50, 50, 50, 0.07), 0em 0.015em 0.9px rgba(63, 63, 63, 0.07), 0em 0.018em 1.1px rgba(76, 76, 76, 0.07), 0em 0.021em 1.3px rgba(89, 89, 89, 0.07), 0em 0.024em 1.5px rgba(102, 102, 102, 0.07), 0em 0.027em 1.7px rgba(114, 114, 114, 0.07), 0em 0.03em 2.1px rgba(127, 127, 127, 0.07), 0em 0.033em 2.5px rgba(140, 140, 140, 0.07), 0em 0.036em 2.9px rgba(153, 153, 153, 0.07), 0em 0.039em 3.3px rgba(165, 165, 165, 0.07), 0em 0.042em 3.7px rgba(178, 178, 178, 0.07), 0em 0.045em 4.1px rgba(191, 191, 191, 0.07), 0em 0.048em 4.5px rgba(204, 204, 204, 0.07), 0em 0.051em 5.5px rgba(216, 216, 216, 0.07), 0em 0.054em 6.5px rgba(229, 229, 229, 0.07), 0em 0.057em 7.5px rgba(242, 242, 242, 0.07), 0em 0.06em 8.5px rgba(255, 255, 255, 0.07);
 }
 
 
 
+.tenue-extras {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 5em;
+  font-weight: 100;
+  letter-spacing: 1em;
+  line-height: 2em;
+  margin-top: 0;
+  padding-top: .3em;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
