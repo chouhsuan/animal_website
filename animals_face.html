@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title> animals </title>
+    
+        <link rel="stylesheet" href="css/ani.css">
+        <!-- P5 -->
+        <script src="js/p5/clmtrackr.js"></script>
+        <script src="js/p5/model_pca_20_svm.js"></script>
+        <script src="js/p5/p5.js"></script>
+        <script src="js/p5/addons/p5.dom.js"></script>
+  		
+  </head>
+
+
+<body>
+	
+	<header>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="about.html">About</a>
+			<a href="Atlas.html">Atlas</a>
+		</nav>
+	</header>
+
+<div id="box">
+	<script>
+var ctracker;
+
+      var image;
+      var noseX;
+      var noseY;
+
+      function preload(){
+          img = loadImage("img/animals/wolf.png"); //狼
+          // img = loadImage("img/animals/owl_300.png"); // 貓頭鷹
+          // img = loadImage("img/animals/meerkat_300.png"); // 狐濛
+          // img = loadImage("img/animals/elephant_300.png"); //大象
+          // img = loadImage("img/animals/peacock_300.png"); //孔雀
+          // img = loadImage("img/animals/fossil_400.png"); //化石
+      }
+
+      function setup() {
+
+        // setup camera capture
+        var videoInput = createCapture();
+        // video 沒有版滿
+        // video capture http://p5js.org/reference/#/p5/createCapture
+        // videoInput.size(800, 600); 
+        videoInput.size(displayWidth, displayHeight);
+        videoInput.position(0, 0);
+        
+        // setup canvas
+        // var cnv = createCanvas(800, 600);
+        var cnv = createCanvas(displayWidth, displayHeight);
+        cnv.position(0, 0);
+
+        // setup tracker
+        ctracker = new clm.tracker();
+        ctracker.init(pModel);
+        ctracker.start(videoInput.elt);
+
+        noStroke();
+        // 聲音沒有消失
+        // audio: false 
+
+        // 沒辦法套用filter 
+        // http://p5js.org/examples/examples/Dom_Video_Capture.php
+        // fliter 種類 http://p5js.org/reference/#/p5/filter
+        filter('GRAY');
+      }
+
+      function draw() {
+        clear();
+
+        // get array of face marker positions [x, y] format
+        var positions = ctracker.getCurrentPosition();
+        
+        for (var i=0; i<positions.length; i++) {
+          // set the color of the ellipse based on position on screen
+          fill(map(positions[i][0], width*0.33, width*0.66, 0, 255), map(positions[i][1], height*0.33, height*0.66, 0, 255), 255);
+          // draw ellipse at each position point
+          // ellipse(positions[i][0], positions[i][1], 8, 8);
+        }
+
+        // put image
+        // 計算0-14的距離、圖片根據0-14的距離會收縮
+        if(positions !== undefined &&
+          positions[37] !== undefined &&  // nose
+          positions[0] !== undefined &&   // left side of the face
+          positions[14] !== undefined){   // right side of the face
+
+          var distance = dist(positions[0][0], positions[0][1],
+                              positions[14][0], positions[14][1])/100;
+                                                    //除以更多、圖片會變大
+
+        // console.log(distance);
+          //圖片貼在鼻子 37號上
+          noseX = positions[37][0];
+          noseY = positions[37][1];    
+          
+          image(img,
+                noseX - (img.width * distance)/2, noseY - (img.height * distance)/2,
+                img.width * distance, img.height * distance);
+          console.log("distance: " + distance);
+          console.log("width: " + img.width); //所以影像都會x3倍
+        }
+
+      }
+  </script>
+
+</div>
+
+
+	<div id="Footer">
+    <p>2015 Chia Hsuan Chou</p>
+	</div>
+
+</body>
+</html>
+
+
+

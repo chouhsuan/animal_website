@@ -72,11 +72,6 @@ header a:hover{
 
 #animal_pic{
 	position: absolute;
-	/*float: right;*/
-	/*position: top;*/
-	/*display: block;*/
-	/*height: 100%;*/
-	/*width: 50vh;*/
 	bottom: 0;
 	right: 0;
 }
@@ -85,9 +80,7 @@ header a:hover{
 	position: absolute;
 	top: 0;
 	right: 0;
-
 }
-
 
 
 #Footer{
@@ -99,6 +92,7 @@ header a:hover{
 #Footer p{
   text-align: center;
   line-height: 30px;
+  font-size: 10px;
 }
 
 
