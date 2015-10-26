@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <title> animals </title>
     
-        <link rel="stylesheet" href="css/ani.css">
+        <link rel="stylesheet" href="css/animals.css">
         <!-- P5 -->
         <script src="js/p5/clmtrackr.js"></script>
         <script src="js/p5/model_pca_20_svm.js"></script>
         <script src="js/p5/p5.js"></script>
         <script src="js/p5/addons/p5.dom.js"></script>
-  		
+      
   </head>
 
 
 <body>
-	
-	<header>
-		<nav>
-			<a href="index.html">Home</a>
-			<a href="about.html">About</a>
-			<a href="Atlas.html">Atlas</a>
-		</nav>
-	</header>
+  
+  <header>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="about.html">About</a>
+      <a href="Atlas.html">Atlas</a>
+    </nav>
+  </header>
 
 <div id="box">
-	<script>
+  <script>
 var ctracker;
 
       var image;
@@ -68,7 +68,8 @@ var ctracker;
         // 沒辦法套用filter 
         // http://p5js.org/examples/examples/Dom_Video_Capture.php
         // fliter 種類 http://p5js.org/reference/#/p5/filter
-        filter('GRAY');
+        // filter('GRAY');
+        filter(GRAY);
       }
 
       function draw() {
@@ -113,9 +114,9 @@ var ctracker;
 </div>
 
 
-	<div id="Footer">
+  <div id="Footer">
     <p>2015 Chia Hsuan Chou</p>
-	</div>
+  </div>
 
 </body>
 </html>
