@@ -7,12 +7,12 @@
         <script>
 
             //載入後執行的函式
-            function load(){
+            function getUserInfo(){
                 
                 //取出access_token
                 temp = location.href;
                 access = temp.split('=')[1];
-                the_url = "https://api.instagram.com/v1/users/self/?access_token="+access;
+                the_url = "https://api.instagram.com/v1/users/self/?access_token="+access
                 
                 //向instagram api要取資訊
                 $.ajax({
@@ -20,26 +20,86 @@
                     dataType: 'jsonp',
                     type: 'get',
                     success: function(data) {
-                        //擷取出被追蹤人數
-                        followed_by = data["data"]["counts"]["followed_by"];
-
-                        if(followed_by < 10){
-                            document.location.href="./animal01.html";
-                        }
-                        else if(followed_by < 50){
-                            document.location.href="./animal02.html";
-                        }
-                        else{
-                            document.location.href="./animal03.html";
-                        }
+                        //info
+                        name      = data["data"]["username"];
+                        post      = data["data"]["counts"]["media"];
+                        follower  = data["data"]["counts"]["followed_by"];
+                        following = data["data"]["counts"]["follows"];
                     }
                 });      
+
+                getPopularity();
             }
-            
+
+            function getPopularity(){
+                the_url = "https://api.instagram.com/v1/users/self/media/recent/?access_token="+access
+                
+                //向instagram api要取資訊
+                $.ajax({
+                    url: the_url,
+                    dataType: 'jsonp',
+                    type: 'get',
+                    success: function(data) {
+                        //info
+                        sum = 0;
+                        temp = data["data"];
+
+                        for(i = 0; i < temp.length; i++){
+                            sum += temp[i]["likes"]["count"] / follower;
+                        }
+
+                        popularity = sum/temp.length * 100;
+                    }
+                });    
+
+                getRespond();  
+            }
+
+            function getRespond(){
+                the_url = "https://api.instagram.com/v1/users/self/media/liked?access_token="+access
+                
+                //向instagram api要取資訊
+                $.ajax({
+                    url: the_url,
+                    dataType: 'jsonp',
+                    type: 'get',
+                    success: function(data) {
+                        //info
+                        sum = 0;
+                        temp = data["data"];
+
+                        //liked
+                        for(i = 0; i < temp.length; i++){
+                            temp2 = temp[i]["comments"]["data"];
+
+                            //those who comment this post
+                            for(j = 0; j < temp2.length; j++){
+                                if(temp2[j]["from"]["username"] == name){
+                                    sum += 1;
+                                }
+                            }
+                        }
+
+                        likes   = temp.length;
+                        respond = sum;
+                        storeInSql(respond);
+                    }
+                });
+            }
+
+            //store into database
+            function storeInSql(){
+                $.post(
+                    "backend.php",
+                    {'name':name, 'post':post, 'follower':follower, 'following':following, 'popularity':popularity, 'respond':respond, 'likes':likes}
+                ).done(function(data){
+                    $("#here").append(data);
+                });
+            }
         </script>
     </head>
 
-    <body onload="load()">
+    <body id="here" onload="getUserInfo()">
 
     </body>
 </html>
