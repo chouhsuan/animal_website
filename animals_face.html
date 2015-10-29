@@ -10,6 +10,7 @@
         <script src="js/p5/model_pca_20_svm.js"></script>
         <script src="js/p5/p5.js"></script>
         <script src="js/p5/addons/p5.dom.js"></script>
+        <script type="text/javascript" src="./js/jquery-1.6.min.js"></script>
       
   </head>
 
@@ -33,7 +34,14 @@ var ctracker;
       var noseY;
 
       function preload(){
-          img = loadImage("img/animals/wolf.png"); //狼
+          $.post(
+              "backend.php",
+              {'face':1}
+          ).done(function(data){
+              alert(data);
+              img = loadImage(data);
+          });
+           //狼
           // img = loadImage("img/animals/owl_300.png"); // 貓頭鷹
           // img = loadImage("img/animals/meerkat_300.png"); // 狐濛
           // img = loadImage("img/animals/elephant_300.png"); //大象
