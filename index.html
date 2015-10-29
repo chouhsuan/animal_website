@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html >
-  <head>
-    <meta charset="UTF-8">
-    <title> #SocialNetworkZoology </title>
-        <link rel="stylesheet" href="css/home.css">
-  </head>
+  	<head>
+	    <meta charset="UTF-8">
+	    <title> #SocialNetworkZoology </title>
+	    <link rel="stylesheet" href="css/home.css">
+    	<script>
+    		//direct to instagram login page
+	    	function login(){
+	    		document.location.href="https://instagram.com/oauth/authorize/?client_id=dc00b387fa124add80a40a600e1d2e01&redirect_uri=http://e24p21.byethost32.com/animal_social/success.html&response_type=token";
+	    	}
+    	</script>
+  	</head>
 
-  <body>
+  	<body>
+	    <!--Google Font - Work Sans-->
+		<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	   
+		<input type="button" value="login"onclick="login()">
 
-    <script src="js/animals.js"></script>
-
-    <!--Google Font - Work Sans-->
-<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,700' rel='stylesheet' type='text/css'>
-   
-<!--     <button id="toggleProfile">
-    <img src="img/logo/logo_3d.png" height="158" width="250" alt="Avatar"/>
-    </button> -->
-
-<!--     <div id="logo">
-    <img src="img/logo/logo_3d.png" height="189.6" width="300" alt="Avatar"/>
-    </div> -->
-
-
-    <div id= "logoJS">
-      <p class="tenue-shadow tenue-extras">
-      #Social<br>Network<br>Zoology
-      </p>
-    </div>
+	<!--     <div id="logo">
+	    <img src="img/logo/logo_3d.png" height="189.6" width="300" alt="Avatar"/>
+	    </div> -->
 
 
-<div id="Footer">
-    <p>2015 Chia Hsuan Chou</p>
-</div>
-    
-    
-  </body>
+	    <div id= "logoJS">
+	      	<p class="tenue-shadow tenue-extras">
+	      		#Social<br>Network<br>Zoology
+	      	</p>
+	    </div>
+
+		<div id="Footer">
+		    <p>2015 Chia Hsuan Chou</p>
+		</div>
+  	</body>
 </html>
