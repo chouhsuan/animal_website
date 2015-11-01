@@ -22,7 +22,7 @@
                     success: function(data) {
                         //info
                         name      = data["data"]["username"];
-                        post      = data["data"]["counts"]["media"];
+                        //post      = data["data"]["counts"]["media"];
                         follower  = data["data"]["counts"]["followed_by"];
                         following = data["data"]["counts"]["follows"];
                     }
@@ -32,7 +32,8 @@
             }
 
             function getPopularity(){
-                the_url = "https://api.instagram.com/v1/users/self/media/recent/?access_token="+access
+                //user近期po的貼文
+                the_url = "https://api.instagram.com/v1/users/self/media/recent/?access_token="+access+"&count=300";
                 
                 //向instagram api要取資訊
                 $.ajax({
@@ -42,13 +43,32 @@
                     success: function(data) {
                         //info
                         sum = 0;
+                        post = 0;
                         temp = data["data"];
+                        date = new Date();
+                        dateNow  = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
 
                         for(i = 0; i < temp.length; i++){
-                            sum += temp[i]["likes"]["count"] / follower;
+                            date = new Date(parseInt(temp[i]["created_time"]) * 1000);
+                            datePost  = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+
+                            //相差天數
+                            gap = (Date.parse(dateNow)-Date.parse(datePost))/(1000*60*60*24);
+
+                            //比對是否在三週內
+                            if(gap <= 21){
+                                post += 1;
+                                sum += temp[i]["likes"]["count"] / follower;
+                            }
                         }
 
-                        popularity = sum/temp.length * 100;
+                        //防呆
+                        if(post > 0){
+                            popularity = sum/post * 100;
+                        }
+                        else{
+                            popularity = 0;
+                        }
                     }
                 });    
 
@@ -56,7 +76,8 @@
             }
 
             function getRespond(){
-                the_url = "https://api.instagram.com/v1/users/self/media/liked?access_token="+access
+                //user like的po文
+                the_url = "https://api.instagram.com/v1/users/self/media/liked?access_token="+access+"&count=300";
                 
                 //向instagram api要取資訊
                 $.ajax({
@@ -66,23 +87,37 @@
                     success: function(data) {
                         //info
                         sum = 0;
+                        like = 0;
                         temp = data["data"];
+                        date = new Date();
+                        dateNow  = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
 
                         //liked
                         for(i = 0; i < temp.length; i++){
-                            temp2 = temp[i]["comments"]["data"];
+                            date = new Date(parseInt(temp[i]["created_time"]) * 1000);
+                            datePost  = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
 
-                            //those who comment this post
-                            for(j = 0; j < temp2.length; j++){
-                                if(temp2[j]["from"]["username"] == name){
-                                    sum += 1;
+                            //相差天數
+                            gap = (Date.parse(dateNow)-Date.parse(datePost))/(1000*60*60*24);
+
+                            //比對是否在三週內
+                            if(gap <= 21){
+                                like += 1;
+                                temp2 = temp[i]["comments"]["data"];
+
+                                //those who comment this post
+                                for(j = 0; j < temp2.length; j++){
+                                    if(temp2[j]["from"]["username"] == name){
+                                        sum += 1;
+                                    }
                                 }
                             }
                         }
 
-                        likes   = temp.length;
                         respond = sum;
-                        storeInSql(respond);
+                        socialActive = like + respond;
+                        //alert(socialActive);
+                        storeInSql();
                     }
                 });
             }
@@ -91,7 +126,7 @@
             function storeInSql(){
                 $.post(
                     "backend.php",
-                    {'name':name, 'post':post, 'follower':follower, 'following':following, 'popularity':popularity, 'respond':respond, 'likes':likes}
+                    {'name':name, 'post':post, 'follower':follower, 'following':following, 'popularity':popularity, 'socialActive':socialActive}
                 ).done(function(data){
                     $("#here").append(data);
                 });
